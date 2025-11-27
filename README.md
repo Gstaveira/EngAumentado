@@ -10,3 +10,6 @@ Para a elaboração desses entregáveis foram empregadas IA's de LLM (Gemini, GP
 GitHub Copilot para auxiliar no desenvolvimento dos códigos, junto com Webcrumbs, um assistente de IA para desenvolvimento front-end de código.
 
 # Missão 3
+A Missão 3 envolveu a etapa final de validação, implantação e preparação do sistema para uso real. Durante esse processo, foi estruturada e executada uma suíte completa de testes automatizados, abrangendo testes unitários, de integração e de fluxo completo, garantindo a estabilidade e a conformidade do sistema. O pipeline de integração contínua foi configurado no GitHub Actions, permitindo que cada atualização do repositório passe por verificação automática antes de ser integrada. Também foram produzidos os materiais de implantação, como o script de deploy, a documentação técnica do ambiente, o manual do usuário e o FAQ. Em todas essas etapas, ferramentas baseadas em LLMs — incluindo GPT, Gemini e GitHub Copilot — foram utilizadas como apoio para geração de código, criação de documentação, revisão de testes, organização de artefatos e otimização do processo de desenvolvimento. Por fim, foram definidos procedimentos básicos de manutenção para assegurar que o sistema possa ser monitorado, atualizado e ampliado com consistência ao longo do tempo.
+
+# Considerações Finais
