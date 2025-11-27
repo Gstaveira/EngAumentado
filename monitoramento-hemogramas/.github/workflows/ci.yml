@@ -1,0 +1,29 @@
+name: Monitoramento Hemogramas - CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          cd monitoramento-hemogramas
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest coverage
+
+      - name: Run tests
+        run: |
+          cd monitoramento-hemogramas
+          pytest --cov=.
