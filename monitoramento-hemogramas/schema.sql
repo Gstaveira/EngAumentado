@@ -18,3 +18,9 @@ CREATE TABLE IF NOT EXISTS alerts (
   valor REAL,
   descricao TEXT
 );
+
+CREATE TABLE IF NOT EXISTS logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    acao TEXT,
+    data_hora TEXT
+);

@@ -175,10 +175,19 @@ def detect_alerts(persist=True):
     conn.close()
     return alerts
 
-@app.route("/run_detection")
+@app.route("/run_detection", methods=["POST"])
 def run_detection_route():
     alerts = detect_alerts(persist=True)
-    return jsonify({"alerts_generated": len(alerts), "alerts": alerts})
+    registrar_log(f"Detecção executada – {len(alerts)} alertas gerados")
+    return jsonify({"ok": True, "alerts_generated": len(alerts)})
+
+@app.route("/logs")
+def ver_logs():
+    db = get_db()
+    rows = db.execute("SELECT * FROM logs ORDER BY id DESC LIMIT 50").fetchall()
+    logs = [{"acao": r["acao"], "data": r["data_hora"]} for r in rows]
+    return render_template("logs.html", logs=logs)
+
 
 @app.route("/plot/<municipio>")
 def plot_municipio(municipio):
@@ -198,6 +207,16 @@ def plot_municipio(municipio):
     plt.savefig(path)
     plt.close()
     return send_file(path, mimetype='image/png')
+
+def registrar_log(acao):
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute(
+        "INSERT INTO logs (acao, data_hora) VALUES (?, datetime('now','localtime'))",
+        (acao,)
+    )
+    conn.commit()
+    conn.close()
 
 # ---------------------------
 # Inicialização
